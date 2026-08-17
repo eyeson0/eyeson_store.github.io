@@ -1,0 +1,7 @@
+[
+  { "id": "women", "name": "Women" }, { "id": "hoodies", "name": "Hoodies" },
+  { "id": "tshirts", "name": "T-Shirts" }, { "id": "jackets", "name": "Jackets" },
+  { "id": "joggers", "name": "Joggers" }, { "id": "accessories", "name": "Accessories" },
+  { "id": "caps", "name": "Caps" }, { "id": "oversized", "name": "Oversized" },
+  { "id": "pants", "name": "Pants" }, { "id": "sale", "name": "Sale" }
+]

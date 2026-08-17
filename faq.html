@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EYESON — FAQ</title>
+  <meta name="description" content="EYESON — premium luxury fashion. Designed for those who lead, not follow."/>
+  <link rel="icon" href="images/logo/logo.png"/>
+  <link rel="stylesheet" href="css/theme.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/style.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/header.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/footer.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/components.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/pages.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/animations.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/responsive.css?v=20260816-15"/>
+</head>
+<body data-page="legal">
+  <div id="header"></div>
+<!-- ================= FAQ ================= -->
+<section class="page-hero container">
+  <p class="eyebrow">EYESON</p>
+  <h1 class="headline-lg">FAQ</h1>
+  <p class="breadcrumb"><a href="index.html">Home</a> / <span>FAQ</span></p>
+</section>
+<section class="section container legal-body" style="padding-top:10px">
+<h3>Frequently Asked Questions</h3>
+<div class="faq-item"><button class="faq-q">Do you deliver outside Kathmandu? <span class="pm">+</span></button><div class="faq-a"><p>Yes — we deliver nationwide across Nepal within 2–5 business days, with Cash on Delivery available.</p></div></div>
+<div class="faq-item"><button class="faq-q">What payment methods do you accept? <span class="pm">+</span></button><div class="faq-a"><p>Cash on Delivery, eSewa, Khalti, Fonepay, Visa and MasterCard.</p></div></div>
+<div class="faq-item"><button class="faq-q">How do your sizes fit? <span class="pm">+</span></button><div class="faq-a"><p>Our silhouettes are cut relaxed and editorial. Each product page includes a full size guide and model measurements.</p></div></div>
+<div class="faq-item"><button class="faq-q">Can I exchange an item? <span class="pm">+</span></button><div class="faq-a"><p>Yes — unworn items can be exchanged within 14 days. See our Returns page for details.</p></div></div>
+<div class="faq-item"><button class="faq-q">Where is EYESON made? <span class="pm">+</span></button><div class="faq-a"><p>Every piece is designed and finished in Kathmandu, Nepal, from premium imported fabrics.</p></div></div>
+<script>
+  /* FAQ accordion — one open at a time */
+  document.querySelectorAll(".faq-q").forEach(function (q) {
+    q.addEventListener("click", function () {
+      var item = q.parentElement, a = item.querySelector(".faq-a");
+      var open = item.classList.toggle("open");
+      a.style.maxHeight = open ? a.scrollHeight + "px" : "0";
+    });
+  });
+</script>
+</section>
+  <div id="footer"></div>
+    <script src="js/auth-config.js?v=20260816-15"></script>
+  <script src="js/auth.js?v=20260816-15"></script>
+  <script src="js/data.js?v=20260816-15"></script>
+  <script src="js/utils.js?v=20260816-15"></script>
+  <script src="js/components.js?v=20260816-15"></script>
+  <script src="js/theme.js?v=20260816-15"></script>
+  <script src="js/cart.js?v=20260816-15"></script>
+  <script src="js/wishlist.js?v=20260816-15"></script>
+  <script src="js/search.js?v=20260816-15"></script>
+  <script src="js/loading.js?v=20260816-15"></script>
+  <script src="js/animations.js?v=20260816-15"></script>
+  <script src="js/carousel.js?v=20260816-15"></script>
+  <script src="js/main.js?v=20260816-15"></script>
+</body>
+</html>

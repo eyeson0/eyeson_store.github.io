@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EYESON sitemap — update the domain to your real address after hosting -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.eyeson.com.np/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.eyeson.com.np/collections.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.eyeson.com.np/product.html</loc><priority>0.8</priority></url>
+  <url><loc>https://www.eyeson.com.np/about.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.eyeson.com.np/contact.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.eyeson.com.np/cart.html</loc><priority>0.5</priority></url>
+  <url><loc>https://www.eyeson.com.np/faq.html</loc><priority>0.5</priority></url>
+  <url><loc>https://www.eyeson.com.np/shipping.html</loc><priority>0.4</priority></url>
+  <url><loc>https://www.eyeson.com.np/returns.html</loc><priority>0.4</priority></url>
+  <url><loc>https://www.eyeson.com.np/login.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.eyeson.com.np/register.html</loc><priority>0.3</priority></url>
+</urlset>

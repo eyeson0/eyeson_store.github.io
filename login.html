@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EYESON — Sign In</title>
+  <meta name="description" content="Sign in to your EYESON account."/>
+  <link rel="icon" href="images/logo/logo.png"/>
+  <link rel="stylesheet" href="css/theme.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/header.css"/>
+  <link rel="stylesheet" href="css/footer.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/pages.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+</head>
+<body data-page="login">
+  <div id="header"></div>
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <span class="logo-dual auth-logo">
+        <img class="lg-black" src="images/logo/logo-black.png" alt="EYESON" onerror="this.parentElement.innerHTML='<span class=&quot;logo-fallback&quot;>EYESON</span>'"/>
+        <img class="lg-white" src="images/logo/logo-white.png" alt=""/>
+      </span>
+      <h2 class="headline-md" style="font-size:1.6rem">WELCOME BACK</h2>
+      <p class="text-soft">Designed for those who lead, not follow.</p>
+
+      <div id="loginStep">
+        <p class="auth-step">Sign in to your account</p>
+        <form id="loginForm">
+          <div class="field"><label for="loginIdentifier">Username or Email</label><input type="text" id="loginIdentifier" required autocomplete="username" placeholder="username or you@example.com"/></div>
+          <div class="field"><label for="loginPassword">Password</label><input type="password" id="loginPassword" required autocomplete="current-password" placeholder="Your password"/></div>
+          <label class="text-soft" style="display:flex;gap:9px;align-items:center;margin:5px 0 18px;cursor:pointer"><input type="checkbox" id="loginRemember" checked/> Remember this device</label>
+          <button class="btn btn-solid" type="submit" style="width:100%" id="loginBtn">Sign In</button>
+        </form>
+        <button class="resend-link" type="button" id="forgotPassword" style="display:block;margin:18px auto 0">Forgot Password?</button>
+      </div>
+
+      <div id="resetRequestStep" style="display:none">
+        <p class="auth-step">Reset your password</p>
+        <p class="text-soft" style="margin-bottom:18px">Enter your email or username. We will send a 6-digit reset code if an account matches.</p>
+        <form id="resetRequestForm">
+          <div class="field"><label for="resetIdentifier">Username or Email</label><input type="text" id="resetIdentifier" required autocomplete="username" placeholder="username or you@example.com"/></div>
+          <button class="btn btn-solid" type="submit" style="width:100%" id="resetSendBtn">Send Reset Code</button>
+        </form>
+        <button class="auth-back" type="button" id="resetBack">← Back to sign in</button>
+      </div>
+
+      <div id="resetVerifyStep" style="display:none">
+        <p class="auth-step">Verify reset code</p>
+        <p class="otp-email-hint">Enter the code sent for <strong id="resetIdentifierDisplay"></strong></p>
+        <div class="otp-inputs" id="resetOtpBox" aria-label="Six digit reset code">
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" aria-label="Digit 1"/>
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2"/>
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3"/>
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4"/>
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5"/>
+          <input class="otp-input" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6"/>
+        </div>
+        <div class="otp-error" id="resetOtpError"></div>
+        <div class="otp-actions">
+          <button class="btn btn-solid" type="button" id="resetVerifyBtn">Verify Code</button>
+          <button class="resend-link" type="button" id="resetResend">Resend Code</button>
+        </div>
+      </div>
+
+      <div id="resetPasswordStep" style="display:none">
+        <p class="auth-step">Create a new password</p>
+        <form id="resetPasswordForm">
+          <div class="field"><label for="newPassword">New Password</label><input type="password" id="newPassword" required minlength="10" autocomplete="new-password" placeholder="At least 10 characters"/></div>
+          <div class="field"><label for="confirmNewPassword">Confirm New Password</label><input type="password" id="confirmNewPassword" required minlength="10" autocomplete="new-password" placeholder="Repeat your password"/></div>
+          <label class="text-soft" style="display:flex;gap:9px;align-items:center;margin:5px 0 18px;cursor:pointer"><input type="checkbox" id="resetRemember" checked/> Remember this device</label>
+          <button class="btn btn-solid" type="submit" style="width:100%" id="resetPasswordBtn">Save New Password &amp; Sign In</button>
+        </form>
+      </div>
+
+      <p class="auth-alt">New to EYESON? <a id="registerLink" href="register.html">Create an account</a></p>
+    </div>
+  </div>
+  <div id="footer"></div>
+  <script src="js/auth-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/auth-ui.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/wishlist.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

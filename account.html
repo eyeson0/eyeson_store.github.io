@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EYESON — Account</title>
+  <meta name="description" content="EYESON — premium luxury fashion. Designed for those who lead, not follow."/>
+  <link rel="icon" href="images/logo/logo.png"/>
+  <link rel="stylesheet" href="css/theme.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/style.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/header.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/footer.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/components.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/pages.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/animations.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/responsive.css?v=20260816-15"/>
+</head>
+<body data-page="account">
+  <div id="header"></div>
+<!-- ================= ACCOUNT PAGE ================= -->
+<section class="page-hero container">
+  <p class="eyebrow">Your Space</p>
+  <h1 class="headline-lg" id="acctName">Account</h1>
+</section>
+<section class="section container" style="padding-top:10px">
+  <div class="account-layout">
+    <nav class="account-nav">
+      <a href="#orders" class="active">Orders</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="order-tracking.html">Track Order</a>
+      <a href="#" id="signOut">Sign Out</a>
+    </nav>
+    <div>
+      <h3 class="eyebrow">Order History</h3>
+      <table class="size-guide-table">
+        <thead><tr><th>Order</th><th>Date</th><th>Total</th><th></th></tr></thead>
+        <tbody id="acctOrders"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<script>
+  /* Sign out clears only the user session, preserves cart/wishlist/theme */
+  document.getElementById("signOut").addEventListener("click", function (e) {
+    e.preventDefault();
+    eyesonLogout();
+  });
+</script>
+  <div id="footer"></div>
+    <script src="js/auth-config.js?v=20260816-15"></script>
+  <script src="js/auth.js?v=20260816-15"></script>
+  <script src="js/data.js?v=20260816-15"></script>
+  <script src="js/utils.js?v=20260816-15"></script>
+  <script src="js/components.js?v=20260816-15"></script>
+  <script src="js/theme.js?v=20260816-15"></script>
+  <script src="js/cart.js?v=20260816-15"></script>
+  <script src="js/wishlist.js?v=20260816-15"></script>
+  <script src="js/search.js?v=20260816-15"></script>
+  <script src="js/loading.js?v=20260816-15"></script>
+  <script src="js/animations.js?v=20260816-15"></script>
+  <script src="js/carousel.js?v=20260816-15"></script>
+  <script src="js/main.js?v=20260816-15"></script>
+</body>
+</html>

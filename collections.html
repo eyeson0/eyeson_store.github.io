@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EYESON — Collections</title>
+  <meta name="description" content="EYESON — premium luxury fashion. Designed for those who lead, not follow."/>
+  <link rel="icon" href="images/logo/logo.png"/>
+  <link rel="stylesheet" href="css/theme.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/style.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/header.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/footer.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/components.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/pages.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/animations.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/responsive.css?v=20260816-15"/>
+</head>
+<body data-page="collections">
+  <div id="header"></div>
+<!-- ================= COLLECTIONS PAGE ================= -->
+<section class="page-hero container">
+  <p class="eyebrow">Collection</p>
+  <h1 class="headline-lg" id="collTitle">All Products</h1>
+  <p class="breadcrumb" id="collCrumb"></p>
+</section>
+
+<section class="section" style="padding-top:20px">
+  <div class="container">
+    <!-- Category chips -->
+    <div class="sizes" id="collChips" style="margin-bottom:30px"></div>
+
+    <div class="shop-layout">
+      <!-- Smart filters -->
+      <aside class="filters">
+        <h4>Price</h4>
+        <input type="range" id="priceRange" min="1000" max="16000" value="16000" step="500" style="width:100%" aria-label="Max price"/>
+        <p id="priceLabel" style="font-size:.8rem;font-weight:700;margin-top:6px"></p>
+        <h4>Size</h4>
+        <div class="filter-list">
+          <label><input type="checkbox" class="filter-size" value="S"/> S</label>
+          <label><input type="checkbox" class="filter-size" value="M"/> M</label>
+          <label><input type="checkbox" class="filter-size" value="L"/> L</label>
+          <label><input type="checkbox" class="filter-size" value="XL"/> XL</label>
+        </div>
+      </aside>
+
+      <div>
+        <!-- Toolbar: result count + sorting -->
+        <div class="shop-toolbar">
+          <span class="result-count" id="collCount"></span>
+          <select id="sortSel" aria-label="Sort products">
+            <option value="featured">Sort: Featured</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="name">Name: A to Z</option>
+          </select>
+        </div>
+        <!-- Product grid -->
+        <div class="product-grid" id="collGrid" style="transition:opacity .3s"></div>
+      </div>
+    </div>
+  </div>
+</section>
+  <div id="footer"></div>
+    <script src="js/auth-config.js?v=20260816-15"></script>
+  <script src="js/auth.js?v=20260816-15"></script>
+  <script src="js/data.js?v=20260816-15"></script>
+  <script src="js/utils.js?v=20260816-15"></script>
+  <script src="js/components.js?v=20260816-15"></script>
+  <script src="js/theme.js?v=20260816-15"></script>
+  <script src="js/cart.js?v=20260816-15"></script>
+  <script src="js/wishlist.js?v=20260816-15"></script>
+  <script src="js/search.js?v=20260816-15"></script>
+  <script src="js/loading.js?v=20260816-15"></script>
+  <script src="js/animations.js?v=20260816-15"></script>
+  <script src="js/carousel.js?v=20260816-15"></script>
+  <script src="js/main.js?v=20260816-15"></script>
+</body>
+</html>

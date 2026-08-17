@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EYESON — Contact</title>
+  <meta name="description" content="EYESON — premium luxury fashion. Designed for those who lead, not follow."/>
+  <link rel="icon" href="images/logo/logo.png"/>
+  <link rel="stylesheet" href="css/theme.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/style.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/header.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/footer.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/components.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/pages.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/animations.css?v=20260816-15"/>
+  <link rel="stylesheet" href="css/responsive.css?v=20260816-15"/>
+</head>
+<body data-page="contact">
+  <div id="header"></div>
+<!-- ================= CONTACT PAGE ================= -->
+<section class="page-hero container">
+  <p class="eyebrow">Say Hello</p>
+  <h1 class="headline-lg">CONTACT.</h1>
+</section>
+<section class="section container" style="padding-top:10px">
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info-block"><h4>Flagship Store</h4><p class="text-soft">Durbar Marg, Kathmandu, Nepal</p></div>
+      <div class="contact-info-block"><h4>Email</h4><p class="text-soft">hello@eyeson.com.np</p></div>
+      <div class="contact-info-block"><h4>Phone</h4><p class="text-soft">+977 9800000000</p></div>
+      <div class="contact-info-block"><h4>Hours</h4><p class="text-soft">Sun to Sat · 10:00 to 20:00</p></div>
+    </div>
+    <form id="contactForm">
+      <div class="field"><label>Name</label><input type="text" required placeholder="Your name"/></div>
+      <div class="field"><label>Email</label><input type="email" required placeholder="you@example.com"/></div>
+      <div class="field"><label>Message</label><textarea rows="5" required placeholder="How can we help?"></textarea></div>
+      <!-- Contact submit button -->
+      <button class="btn btn-solid" type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+<script>
+  /* Contact form — validates and confirms with a toast */
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    toast("Message sent — we will be in sight soon");
+    this.reset();
+  });
+</script>
+  <div id="footer"></div>
+    <script src="js/auth-config.js?v=20260816-15"></script>
+  <script src="js/auth.js?v=20260816-15"></script>
+  <script src="js/data.js?v=20260816-15"></script>
+  <script src="js/utils.js?v=20260816-15"></script>
+  <script src="js/components.js?v=20260816-15"></script>
+  <script src="js/theme.js?v=20260816-15"></script>
+  <script src="js/cart.js?v=20260816-15"></script>
+  <script src="js/wishlist.js?v=20260816-15"></script>
+  <script src="js/search.js?v=20260816-15"></script>
+  <script src="js/loading.js?v=20260816-15"></script>
+  <script src="js/animations.js?v=20260816-15"></script>
+  <script src="js/carousel.js?v=20260816-15"></script>
+  <script src="js/main.js?v=20260816-15"></script>
+</body>
+</html>
