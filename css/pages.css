@@ -1,0 +1,150 @@
+/* ============================================================
+   EYESON — PAGES.CSS
+   Inner page layouts: collections listing + filters, product
+   detail, cart / Eye Vault, checkout, auth, account, tracking,
+   about, contact, legal pages.
+   ============================================================ */
+
+/* ================= COLLECTIONS / SHOP LISTING ================= */
+.shop-layout { display: grid; grid-template-columns: 250px 1fr; gap: 44px; align-items: start; }
+.filters { position: sticky; top: 100px; }
+.filters h4 { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-soft); margin: 26px 0 12px; }
+.filters h4:first-child { margin-top: 0; }
+.filter-list label { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: 0.88rem; cursor: pointer; }
+.filter-list input { accent-color: var(--accent); width: 16px; height: 16px; }
+.shop-toolbar {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 26px; padding-bottom: 18px; border-bottom: 1px solid var(--line);
+}
+.shop-toolbar select { background: var(--card); border: 1px solid var(--line); padding: 10px 14px; }
+.result-count { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-soft); }
+
+/* ================= PRODUCT DETAIL ================= */
+.pdp { display: grid; grid-template-columns: 1.15fr 1fr; gap: 60px; align-items: start; }
+.pdp-gallery .pdp-main { aspect-ratio: 3/4; overflow: hidden; cursor: zoom-in; }
+.pdp-main img { transition: transform 0.5s var(--ease); }
+.pdp-main.zoomed img { transform: scale(1.9); }
+.pdp-thumbs { display: flex; gap: 12px; margin-top: 14px; }
+.pdp-thumbs button { width: 72px; aspect-ratio: 3/4; border: 1px solid var(--line); overflow: hidden; transition: border-color var(--speed); }
+.pdp-thumbs button.active, .pdp-thumbs button:hover { border-color: var(--accent); }
+.pdp-info .pc-price { font-size: 1.6rem; }
+.pdp-info .pdp-desc { color: var(--text-soft); margin: 18px 0; max-width: 480px; }
+.pdp-actions { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
+.pdp-panel { border-top: 1px solid var(--line); margin-top: 30px; }
+.pdp-tabs { display: flex; gap: 26px; }
+.pdp-tab { padding: 16px 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-soft); border-bottom: 2px solid transparent; }
+.pdp-tab.active { color: var(--text); border-color: var(--accent); }
+.pdp-tab-body { padding: 22px 0; color: var(--text-soft); }
+.size-guide-table, .fabric-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.size-guide-table th, .size-guide-table td, .fabric-table th, .fabric-table td { border: 1px solid var(--line); padding: 10px 12px; font-size: 0.85rem; text-align: left; }
+.size-guide-table th, .fabric-table th { background: var(--bg-alt); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.7rem; }
+
+/* ================= CART / EYE VAULT ================= */
+.cart-layout { display: grid; grid-template-columns: 1.6fr 1fr; gap: 50px; align-items: start; }
+.cart-item {
+  display: grid; grid-template-columns: 96px 1fr auto; gap: 20px; align-items: center;
+  padding: 20px 0; border-bottom: 1px solid var(--line);
+}
+.cart-item .ci-img { width: 96px; aspect-ratio: 3/4; }
+.cart-item .ci-name { font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.9rem; }
+.cart-item .ci-meta { font-size: 0.75rem; color: var(--text-soft); margin-top: 4px; }
+.ci-qty { display: flex; align-items: center; border: 1px solid var(--line); width: max-content; }
+.ci-qty button { width: 34px; height: 34px; font-size: 1rem; }
+.ci-qty button:hover { color: var(--accent); }
+.ci-qty span { width: 40px; text-align: center; font-weight: 700; }
+.ci-remove { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-soft); margin-top: 10px; display: inline-block; }
+.ci-remove:hover { color: #b91c1c; }
+.summary-card { background: var(--card); border: 1px solid var(--line); padding: 34px; position: sticky; top: 100px; }
+.summary-row { display: flex; justify-content: space-between; padding: 9px 0; font-size: 0.9rem; }
+.summary-row.total { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 16px; font-weight: 800; font-size: 1.15rem; }
+.free-ship-note { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1e8e3e; margin: 10px 0 18px; }
+
+/* ================= CHECKOUT ================= */
+.checkout-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; align-items: start; }
+.checkout-steps { display: flex; gap: 30px; margin-bottom: 40px; flex-wrap: wrap; }
+.step { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-soft); }
+.step.active { color: var(--text); border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+.payment-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+.pay-option { border: 1px solid var(--line); padding: 14px; text-align: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; cursor: pointer; transition: all var(--speed); }
+.pay-option.active, .pay-option:hover { border-color: var(--accent); background: var(--bg-alt); }
+
+/* ================= AUTH (login / register) ================= */
+.auth-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 6% 80px; }
+.auth-card { width: min(440px, 100%); background: var(--card); border: 1px solid var(--line); padding: 50px 44px; text-align: center; }
+.auth-card .auth-logo { display: flex; justify-content: center; height: 64px; margin: 0 auto 30px; }
+.auth-card h2 { margin-bottom: 8px; }
+.auth-card .text-soft { font-size: 0.85rem; margin-bottom: 30px; }
+.auth-card .field { text-align: left; }
+.auth-alt { margin-top: 24px; font-size: 0.82rem; color: var(--text-soft); }
+.auth-alt a { color: var(--accent); font-weight: 700; }
+
+/* ================= ACCOUNT ================= */
+.account-layout { display: grid; grid-template-columns: 260px 1fr; gap: 50px; align-items: start; }
+.account-nav { border: 1px solid var(--line); background: var(--card); }
+.account-nav a { display: block; padding: 16px 22px; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; border-bottom: 1px solid var(--line); transition: all var(--speed); }
+.account-nav a:last-child { border-bottom: none; }
+.account-nav a:hover, .account-nav a.active { background: var(--text); color: var(--bg); }
+
+/* ================= ORDER TRACKING ================= */
+.tracker-input { display: flex; gap: 12px; max-width: 560px; margin: 30px auto 0; }
+.tracker-input input { flex: 1; }
+.track-timeline { max-width: 640px; margin: 50px auto 0; }
+.track-step { display: flex; gap: 20px; padding-bottom: 34px; position: relative; }
+.track-step::before { content: ""; position: absolute; left: 13px; top: 30px; bottom: 0; width: 1px; background: var(--line); }
+.track-step:last-child::before { display: none; }
+.track-dot { width: 27px; height: 27px; flex: none; border-radius: 50%; border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+.track-step.done .track-dot { background: var(--accent); border-color: var(--accent); color: #000; }
+.track-step h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; }
+.track-step p { font-size: 0.8rem; color: var(--text-soft); }
+
+/* ================= ABOUT / CONTACT ================= */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.about-grid .img-frame { aspect-ratio: 4/5; }
+.value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.value-card { border: 1px solid var(--line); background: var(--card); padding: 36px 30px; }
+.value-card .v-icon { color: var(--accent); font-size: 1.6rem; margin-bottom: 16px; }
+.value-card h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; }
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
+.contact-info-block { margin-bottom: 28px; }
+.contact-info-block h4 { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 6px; }
+
+/* ================= LEGAL PAGES ================= */
+.legal-body { max-width: 780px; margin: 0 auto; }
+.legal-body h3 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 34px 0 10px; }
+.legal-body p, .legal-body li { color: var(--text-soft); margin-bottom: 10px; }
+.legal-body ul { list-style: disc; padding-left: 22px; }
+
+/* ================= 404 ================= */
+.notfound-wrap { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 26px; padding: 0 6%; }
+.notfound-eye { font-size: 3rem; color: var(--accent); }
+
+/* ================= OTP VERIFICATION ================= */
+.auth-step { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 8px; }
+.auth-step strong { color: var(--accent); }
+.auth-back { display: inline-block; margin-bottom: 20px; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-soft); }
+.auth-back:hover { color: var(--accent); }
+.auth-notice {
+  background: var(--bg-alt); border: 1px solid var(--accent); padding: 18px 22px;
+  font-size: 0.82rem; color: var(--text-soft); text-align: left; margin-bottom: 24px; line-height: 1.7;
+}
+.auth-notice code { background: var(--bg); padding: 2px 7px; border-radius: 3px; font-size: 0.78rem; }
+.otp-inputs { display: flex; gap: clamp(5px, 2vw, 8px); justify-content: center; margin: 28px 0 22px; }
+.otp-input {
+  width: clamp(38px, 12vw, 48px); height: 60px; text-align: center; font-size: 1.65rem; font-weight: 800;
+  font-family: var(--font-display); letter-spacing: 0;
+  background: var(--bg-alt); border: 1px solid var(--line);
+  transition: border-color var(--speed), box-shadow var(--speed);
+  caret-color: transparent;
+}
+.otp-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2); }
+.otp-input.filled { border-color: var(--text); }
+.otp-error { color: #c0392b; font-size: 0.78rem; letter-spacing: 0.05em; min-height: 20px; margin-top: 8px; text-align: center; }
+.otp-actions { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 20px; }
+.otp-actions .btn { width: 100%; }
+.resend-link { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); cursor: pointer; background: none; border: none; font-weight: 700; }
+.resend-link:hover { text-decoration: underline; }
+.resend-link:disabled { color: var(--text-soft); cursor: default; text-decoration: none; }
+.otp-email-hint { font-size: 0.78rem; color: var(--text-soft); text-align: center; margin-bottom: 6px; }
+.otp-email-hint strong { color: var(--text); }
+.btn-loading { pointer-events: none; opacity: 0.65; }

@@ -1,0 +1,61 @@
+/* ============================================================
+   EYESON — THEME.CSS
+   All colors, fonts and theme variables live here.
+   Change one variable and the entire website updates.
+   ============================================================ */
+
+/* ---------- LIGHT THEME (default) ---------- */
+:root {
+  /* Brand palette */
+  --primary: #000000;      /* Primary brand color  */
+  --secondary: #ffffff;    /* Secondary brand color */
+  --accent: #d4af37;       /* Gold accent          */
+
+  /* Surfaces & text (theme-aware) */
+  --bg: #f8f8f8;           /* Page background      */
+  --bg-alt: #ffffff;       /* Alternate surface    */
+  --text: #000000;         /* Main text            */
+  --text-soft: #6b6b6b;    /* Muted text           */
+  --line: #e5e5e5;         /* Hairline borders     */
+  --card: #ffffff;         /* Product cards        */
+
+  /* Header */
+  --header-bg: rgba(255, 255, 255, 0.92);
+  --header-text: #000000;
+
+  /* Glassmorphism surface for floating controls (carousel arrows) */
+  --glass: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.65);
+
+  /* Shadows & effects */
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.10);
+  --shadow-soft: 0 4px 18px rgba(0, 0, 0, 0.06);
+  --glow: rgba(212, 175, 55, 0.45);
+
+  /* Typography — change fonts in one place */
+  --font-display: "Helvetica Neue", "Arial Black", Arial, sans-serif;
+  --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --speed: 0.35s;
+}
+
+/* ---------- DARK THEME ---------- */
+[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --bg-alt: #111111;
+  --text: #f5f5f5;
+  --text-soft: #9a9a9a;
+  --line: #262626;
+  --card: #141414;
+
+  --header-bg: rgba(10, 10, 10, 0.92);
+  --header-text: #f5f5f5;
+
+  --glass: rgba(15, 15, 15, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.18);
+
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  --shadow-soft: 0 4px 18px rgba(0, 0, 0, 0.4);
+}

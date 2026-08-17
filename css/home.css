@@ -1,0 +1,264 @@
+/* ============================================================
+   EYESON — HOME.CSS
+   Homepage sections: hero, main collection carousel, categories,
+   featured collections, lookbook, campaign video, reviews,
+   instagram, newsletter.
+   ============================================================ */
+
+/* ================= HERO SECTION ================= */
+/* Fixed-height stage; nothing may escape it. z-order: bg 1 < decor 5 <
+   overlay 6 < content 20 < site header 1000 (in header.css). */
+.hero {
+  position: relative;
+  height: 100vh;              /* desktop */
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; color: #fff;
+  overflow: hidden; isolation: isolate;
+}
+
+/* --- Layer 1: campaign photo (cover, never overflows) --- */
+.hero-bg { position: absolute; inset: 0; z-index: 1; pointer-events: none; user-select: none; }
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  animation: hero-zoom 14s var(--ease) both;
+}
+
+/* --- Layer 2: faint decorative logo marks in the corners.
+       Purely decorative: no pointer events, never above the text. --- */
+.hero-decor { position: absolute; inset: 0; z-index: 5; pointer-events: none; user-select: none; }
+.hero-decor .hd {
+  position: absolute;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(0.9rem, 2vw, 1.6rem);
+  letter-spacing: 0.5em;
+  color: #fff;
+  opacity: 0.10;
+  animation: hero-float 26s ease-in-out infinite alternate;
+}
+.hero-decor .tl { top: 4vh; left: 3vw; }
+.hero-decor .tr { top: 4vh; right: 3vw; animation-delay: -6s; }
+.hero-decor .bl { bottom: 4vh; left: 3vw; animation-delay: -13s; }
+.hero-decor .br { bottom: 4vh; right: 3vw; animation-delay: -19s; }
+
+/* --- Layer 3: legibility overlay --- */
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 6; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.68) 100%);
+}
+
+/* --- Layer 4: centered content (flex column, no absolute positioning) --- */
+.hero-content {
+  position: relative; z-index: 20;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 0 6%; max-width: 1200px;
+}
+
+/* Brand wordmark fallback */
+.hero-wordmark {
+  display: block; width: 200px; max-width: 60vw;
+  font-family: var(--font-display); font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 800; letter-spacing: 0.55em; padding-left: 0.55em;
+  color: #fff; margin-bottom: 26px; text-align: center;
+}
+
+/* --- Typography --- */
+.hero-title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(5rem, 10vw, 9rem);
+  letter-spacing: 0.02em; line-height: 1;
+  white-space: nowrap;                         /* never wraps */
+  animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+.hero-sub {
+  font-size: clamp(0.8rem, 1.6vw, 1.05rem);
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 26px 0 42px;
+  animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+.hero-cta {
+  display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;
+  animation: rise-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
+/* --- Responsive hero heights & caps --- */
+@media (max-width: 1024px) {
+  .hero { height: 90vh; }
+  .hero-title { font-size: clamp(4rem, 8vw, 6rem); }
+  .hero-decor .hd { width: 140px; opacity: 0.06; }
+}
+@media (max-width: 768px) {
+  .hero { height: 80vh; }
+  .hero-title { font-size: clamp(2.8rem, 12vw, 4rem); }
+  .hero-decor { display: none; }              /* minimal mobile hero */
+  .hero-cta { flex-direction: column; width: 100%; }
+  .hero-cta .btn { width: 100%; }
+}
+
+/* ================= MAIN COLLECTION (signature carousel) ================= */
+.main-collection { background: var(--bg-alt); overflow: hidden; }
+.mc-stage { position: relative; height: clamp(480px, 72vh, 760px); margin-top: 40px; }
+.mc-model {
+  position: absolute; top: 50%;
+  width: clamp(220px, 26vw, 380px); height: 82%;
+  transform-origin: center;
+  transition: all 0.9s var(--ease);
+  cursor: pointer;
+}
+.mc-model .img-frame { width: 100%; height: 100%; box-shadow: var(--shadow-soft); }
+/* Center model — fully visible, in focus */
+.mc-model.is-center { left: 50%; transform: translate(-50%, -50%) scale(1); z-index: 3; filter: blur(0) opacity(1); }
+/* Side models — faded, blurred, behind */
+.mc-model.is-left { left: 12%; transform: translate(-50%, -50%) scale(0.86); z-index: 1; filter: blur(2.5px); opacity: 0.45; }
+.mc-model.is-right { left: 88%; transform: translate(-50%, -50%) scale(0.86); z-index: 1; filter: blur(2.5px); opacity: 0.45; }
+.mc-model.is-left:hover, .mc-model.is-right:hover { opacity: 0.75; }
+
+/* Carousel arrows — circular glassmorphism buttons.
+   Hidden until the section is hovered (desktop), always visible on touch. */
+.mc-arrow {
+  position: absolute; top: 50%; z-index: 5;
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem; line-height: 1;
+  color: var(--text);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
+  opacity: 0; visibility: hidden;
+  transform: translateY(-50%) scale(0.95);
+  transition: opacity 0.4s var(--ease), transform 0.35s var(--ease),
+              visibility 0.4s, background 0.35s, color 0.35s;
+}
+.main-collection:hover .mc-arrow { opacity: 1; visibility: visible; }
+.mc-arrow:hover {
+  transform: translateY(-50%) scale(1.05);
+  background: var(--text); color: var(--bg); border-color: var(--text);
+}
+.mc-arrow.prev { left: 26px; }
+.mc-arrow.next { right: 26px; }
+/* Touch devices have no hover — keep the arrows permanently visible */
+@media (hover: none) {
+  .mc-arrow { opacity: 1; visibility: visible; }
+}
+
+/* Pagination 1/5 with progress bars */
+.mc-pagination { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 34px 0 10px; }
+.mc-count { font-size: 0.75rem; letter-spacing: 0.3em; font-weight: 700; }
+.mc-bars { display: flex; gap: 6px; }
+.mc-bar { width: 40px; height: 2px; background: var(--line); position: relative; overflow: hidden; cursor: pointer; }
+.mc-bar.active::after {
+  content: ""; position: absolute; inset: 0; background: var(--accent);
+  transform-origin: left; animation: bar-fill 6s linear forwards;
+}
+
+/* Detail panel: left info / center details / right specs */
+.mc-details {
+  display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 40px; align-items: start;
+  margin-top: 30px; padding-top: 34px; border-top: 1px solid var(--line);
+  transition: opacity 0.5s var(--ease);
+}
+.mc-details.fading { opacity: 0; }
+.mc-detail-block h5 { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-soft); margin: 18px 0 6px; }
+.mc-detail-block h5:first-child { margin-top: 0; }
+.mc-detail-block .mc-price { font-size: 1.5rem; font-weight: 800; }
+
+/* ================= SHOP BY CATEGORY ================= */
+.category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.category-card { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+.category-card .img-frame { width: 100%; height: 100%; }
+.category-card:hover .img-frame img { transform: scale(1.08); }
+.category-card .cat-label {
+  position: absolute; inset: auto 0 0 0; z-index: 2; padding: 26px 22px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: #fff;
+  transform: translateY(14px); opacity: 0; transition: all 0.5s var(--ease);
+}
+.category-card:hover .cat-label { transform: translateY(0); opacity: 1; }
+.cat-label h3 { font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.cat-label .cat-underline { width: 34px; height: 2px; background: var(--accent); margin-top: 8px; transition: width 0.5s var(--ease); }
+.category-card:hover .cat-underline { width: 70px; }
+.cat-label .shop-link { display: inline-block; margin-top: 10px; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
+
+/* ================= FEATURED COLLECTIONS ================= */
+.featured-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.featured-card { position: relative; aspect-ratio: 2/3; overflow: hidden; }
+.featured-card .img-frame { width: 100%; height: 100%; }
+.featured-card:hover img { transform: scale(1.07); }
+.featured-card .fc-label {
+  position: absolute; inset: 0; z-index: 2; display: flex; align-items: flex-end; padding: 22px;
+  background: linear-gradient(transparent 55%, rgba(0,0,0,0.7)); color: #fff;
+}
+.fc-label h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.12em; }
+
+/* ================= LOOKBOOK ================= */
+.lookbook { background: var(--primary); color: #fff; }
+.lookbook .eyebrow, .lookbook .text-soft { color: #9a9a9a; }
+.lb-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+.lb-item { position: relative; overflow: hidden; }
+.lb-item .img-frame { width: 100%; height: 100%; }
+.lb-item:hover img { transform: scale(1.05); }
+.lb-item .lb-caption {
+  position: absolute; bottom: 18px; left: 20px; z-index: 2;
+  font-size: 0.66rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.9);
+}
+/* Editorial alternating spans — first item is the full-width campaign banner */
+.lb-item:nth-child(1) { grid-column: span 12; aspect-ratio: 8/3; }
+.lb-item:nth-child(2) { grid-column: span 7; aspect-ratio: 16/10; }
+.lb-item:nth-child(3) { grid-column: span 5; aspect-ratio: 4/3.42; }
+.lb-item:nth-child(4) { grid-column: span 12; aspect-ratio: 16/9; }
+.lb-quote { grid-column: span 12; text-align: center; padding: 60px 8%; }
+
+/* ================= FEATURED VIDEO ================= */
+.campaign-video { position: relative; height: 70vh; overflow: hidden; }
+.campaign-video video { width: 100%; height: 100%; object-fit: cover; }
+.campaign-video .cv-poster { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.cv-overlay {
+  position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 26px; text-align: center; color: #fff;
+  background: rgba(0,0,0,0.35);
+}
+
+/* ================= CUSTOMER REVIEWS ================= */
+.reviews-carousel { position: relative; max-width: 820px; margin: 0 auto; overflow: hidden; }
+.reviews-track { display: flex; transition: transform 0.7s var(--ease); }
+.review-slide { min-width: 100%; text-align: center; padding: 0 8%; }
+.review-stars { color: var(--accent); letter-spacing: 6px; font-size: 1rem; margin-bottom: 20px; }
+.review-text { font-family: var(--font-display); font-size: clamp(1.05rem, 2.4vw, 1.5rem); font-weight: 600; line-height: 1.5; }
+.review-user { margin-top: 26px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.review-user img, .review-user .avatar-fallback {
+  width: 58px; height: 58px; border-radius: 50%; object-fit: cover;
+}
+.avatar-fallback { display: flex; align-items: center; justify-content: center; background: var(--text); color: var(--bg); font-weight: 800; }
+.review-name { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.verified { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: #1e8e3e; }
+.reviews-nav { display: flex; justify-content: center; gap: 14px; margin-top: 40px; }
+.reviews-nav button {
+  width: 44px; height: 44px; border: 1px solid var(--line); transition: all var(--speed);
+}
+.reviews-nav button:hover { background: var(--text); color: var(--bg); }
+
+/* ================= INSTAGRAM FEED ================= */
+.insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+.insta-item { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; }
+.insta-item .img-frame { width: 100%; height: 100%; }
+.insta-item:hover img { transform: scale(1.1); }
+.insta-item::after {
+  content: "◎"; position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.4rem; background: rgba(0,0,0,0.45);
+  opacity: 0; transition: opacity var(--speed);
+}
+.insta-item:hover::after { opacity: 1; }
+
+/* ================= NEWSLETTER ================= */
+.newsletter { background: var(--bg-alt); border-top: 1px solid var(--line); text-align: center; }
+.newsletter-form { display: flex; max-width: 540px; margin: 34px auto 0; border-bottom: 2px solid var(--text); }
+.newsletter-form input {
+  flex: 1; background: none; border: none; padding: 16px 4px; font-size: 1rem; letter-spacing: 0.05em;
+}
+.newsletter-form input:focus { outline: none; }
+.newsletter-form button {
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.28em; text-transform: uppercase;
+  padding: 0 10px; transition: color var(--speed), transform var(--speed);
+}
+.newsletter-form button:hover { color: var(--accent); transform: translateX(4px); }
+.newsletter-form button.sent { animation: pop 0.5s var(--ease); }

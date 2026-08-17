@@ -1,0 +1,160 @@
+/* ============================================================
+   EYESON — COMPONENTS.CSS
+   Reusable pieces: product cards, grids, badges, swatches,
+   quick-view modal, toast, cookie banner, back-to-top, FAQ.
+   ============================================================ */
+
+/* ---------- PRODUCT GRID ---------- */
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+
+/* ---------- PRODUCT CARD (copy one card = add one product) ---------- */
+.product-card { background: var(--card); border: 1px solid var(--line); transition: transform var(--speed) var(--ease), box-shadow var(--speed); }
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+
+.pc-media { position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer; }
+.pc-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease), opacity 0.6s; }
+.pc-media .pc-hover-img { position: absolute; inset: 0; opacity: 0; }
+.product-card:hover .pc-media img:not(.pc-hover-img) { transform: scale(1.06); }
+.product-card:hover .pc-hover-img { opacity: 1; transform: scale(1.06); }
+
+/* Badges */
+.badge {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  font-size: 0.6rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 6px 10px; background: #000; color: #fff;
+}
+.badge.sale { background: var(--accent); color: #000; }
+.badge.soldout { background: #888; }
+
+/* Wishlist heart on card */
+.pc-wish {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.92); color: #000; border-radius: 50%;
+  font-size: 1rem; line-height: 1;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease, background 0.25s ease;
+}
+.pc-wish:hover { transform: scale(1.12); }
+.pc-wish.active { color: #c0392b; background: rgba(255, 255, 255, 0.96); }
+
+/* Quick view bar */
+.pc-quick {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  background: rgba(0, 0, 0, 0.85); color: #fff;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+  text-align: center; padding: 13px;
+  transform: translateY(100%); transition: transform var(--speed) var(--ease);
+}
+.product-card:hover .pc-quick { transform: translateY(0); }
+.pc-quick:hover { background: var(--accent); color: #000; }
+
+/* Card body */
+.pc-body { padding: 18px; }
+.pc-name { font-size: 0.92rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.pc-cat { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-soft); margin: 4px 0 10px; }
+.pc-price { font-weight: 800; }
+.pc-price .old { color: var(--text-soft); text-decoration: line-through; font-weight: 400; margin-left: 8px; font-size: 0.85em; }
+
+/* Color swatches */
+.swatches { display: flex; gap: 7px; margin: 12px 0; }
+.swatch { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--line); cursor: pointer; transition: transform var(--speed); }
+.swatch:hover, .swatch.active { transform: scale(1.25); box-shadow: 0 0 0 2px var(--accent); }
+
+/* Sizes */
+.sizes { display: flex; gap: 6px; flex-wrap: wrap; }
+.size-chip {
+  min-width: 34px; padding: 6px 8px; text-align: center;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+  border: 1px solid var(--line); cursor: pointer; transition: all var(--speed);
+}
+.size-chip:hover, .size-chip.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+/* Stock status */
+.stock { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 10px; }
+.stock.in { color: #1e8e3e; }
+.stock.low { color: var(--accent); }
+.stock.out { color: #b91c1c; }
+
+/* Add to Eye Vault button (full width in card) */
+.pc-add { width: 100%; margin-top: 14px; }
+
+/* ---------- QUICK VIEW MODAL ---------- */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 2500; background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity var(--speed);
+}
+.modal-overlay.open { opacity: 1; pointer-events: auto; }
+.modal-box {
+  width: min(880px, 92%); max-height: 88vh; overflow-y: auto;
+  background: var(--card); display: grid; grid-template-columns: 1fr 1fr;
+  transform: scale(0.94); transition: transform var(--speed) var(--ease);
+}
+.modal-overlay.open .modal-box { transform: scale(1); }
+.modal-box .m-img { aspect-ratio: 3/4; }
+.modal-box .m-body { padding: 38px; }
+.modal-close { position: absolute; top: 20px; right: 26px; font-size: 1.5rem; color: var(--text-soft); z-index: 5; }
+.modal-close:hover { color: var(--accent); }
+.modal-box { position: relative; }
+
+/* ---------- TOAST ---------- */
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translate(-50%, 20px);
+  background: var(--text); color: var(--bg);
+  padding: 14px 30px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  z-index: 3000; opacity: 0; pointer-events: none; transition: all var(--speed) var(--ease);
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- FLYING ORB (Add to Eye Vault animation) ---------- */
+.fly-orb {
+  position: fixed; z-index: 3500; width: 64px; height: 64px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 30px var(--glow);
+  pointer-events: none; transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- COOKIE BANNER ---------- */
+.cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 2800;
+  background: var(--text); color: var(--bg);
+  display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap;
+  padding: 16px 5%;
+  transform: translateY(100%); transition: transform 0.5s var(--ease);
+}
+.cookie-banner.show { transform: translateY(0); }
+.cookie-banner p { font-size: 0.8rem; letter-spacing: 0.06em; }
+.cookie-banner .btn { border-color: var(--bg); color: var(--bg); }
+.cookie-banner .btn:hover { background: var(--bg); color: var(--text); }
+
+/* ---------- BACK TO TOP ---------- */
+.back-top {
+  position: fixed; bottom: 30px; right: 30px; z-index: 1600;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--text); color: var(--bg); font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: all var(--speed);
+}
+.back-top.show { opacity: 1; pointer-events: auto; }
+.back-top:hover { background: var(--accent); color: #000; transform: translateY(-4px); }
+
+/* ---------- FAQ ACCORDION ---------- */
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-q {
+  width: 100%; text-align: left; padding: 22px 0;
+  font-size: 1rem; font-weight: 700; letter-spacing: 0.04em;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+.faq-q .pm { color: var(--accent); font-size: 1.3rem; transition: transform var(--speed); }
+.faq-item.open .pm { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.45s var(--ease); }
+.faq-a p { padding: 0 0 22px; color: var(--text-soft); max-width: 760px; }
+
+/* ---------- COMING SOON (empty category) ---------- */
+.coming-soon { text-align: center; padding: 100px 0; }
+.coming-soon .eye-decoration { font-size: 2rem; color: var(--accent); margin-bottom: 20px; }
+
+/* ---------- PAGE HERO (inner pages) ---------- */
+.page-hero { padding: 160px 0 70px; text-align: center; }
+.breadcrumb { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-soft); margin-top: 16px; }
+.breadcrumb a:hover { color: var(--accent); }

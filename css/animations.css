@@ -1,0 +1,104 @@
+/* ============================================================
+   EYESON — ANIMATIONS.CSS
+   Keyframes: loading eye, reveals, hero logo cinema, breathes.
+   (Custom cursor removed — the site uses the native cursor.)
+   ============================================================ */
+
+/* ---------- LOAD-IN REVEAL (used with .reveal + IntersectionObserver) ---------- */
+.reveal { opacity: 0; transform: translateY(38px); filter: blur(6px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 0.9s var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.9s var(--ease); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: all 0.9s var(--ease); }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ---------- EYESON CINEMATIC LOADING SCREEN ----------
+   Two hairlines start collapsed over the center, then slide apart —
+   one up, one down — revealing the EYESON wordmark between them. */
+#loading-screen {
+  position: fixed; inset: 0; z-index: 9999; background: #000;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.8s var(--ease), visibility 0.8s;
+}
+#loading-screen.done { opacity: 0; visibility: hidden; }
+
+.loader-reveal {
+  display: flex; flex-direction: column; align-items: center;
+  animation: loader-settle 2.4s var(--ease) both;
+}
+/* The hairlines — thin white bars with a gold heart */
+.loader-line {
+  width: min(340px, 72vw); height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #ffffff 30%, var(--accent) 50%, #ffffff 70%, transparent 100%);
+  opacity: 0;
+}
+/* Top line: slides UP out of the center */
+.loader-line.top    { animation: line-up 1s var(--ease) 0.35s forwards; }
+/* Bottom line: slides DOWN out of the center */
+.loader-line.bottom { animation: line-down 1s var(--ease) 0.35s forwards; }
+
+/* The wordmark revealed between the lines */
+.loader-text {
+  margin: 22px 0;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(1.3rem, 4vw, 2rem); color: #fff;
+  letter-spacing: 0.85em; padding-left: 0.85em; /* optical centering */
+  opacity: 0; filter: blur(8px);
+  animation: loader-word-in 0.95s var(--ease) 0.55s forwards;
+}
+
+@keyframes line-up {
+  from { opacity: 0; transform: translateY(34px) scaleX(0.4); }
+  to   { opacity: 1; transform: translateY(0) scaleX(1); }
+}
+@keyframes line-down {
+  from { opacity: 0; transform: translateY(-34px) scaleX(0.4); }
+  to   { opacity: 1; transform: translateY(0) scaleX(1); }
+}
+@keyframes loader-word-in {
+  from { opacity: 0; filter: blur(8px); letter-spacing: 0.85em; }
+  to   { opacity: 1; filter: blur(0);   letter-spacing: 0.45em; }
+}
+/* Gentle settle once everything has arrived, before the dissolve */
+@keyframes loader-settle {
+  0%, 70% { transform: scale(1); }
+  85% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- PAGE TRANSITION ---------- */
+.page-fade { animation: page-enter 0.7s var(--ease); }
+
+/* ---------- HERO ENTRANCE SET (each runs once on load) ---------- */
+/* Logo: fade in, blur→sharp, scale 0.9→1 — never above 1 */
+@keyframes logo-enter {
+  from { opacity: 0; filter: blur(10px); transform: scale(0.9) translateY(10px); }
+  to   { opacity: 1; filter: blur(0);   transform: scale(1) translateY(0); }
+}
+/* Heading / subtitle / buttons: fade upward */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* Decorative corner marks: very slow, very subtle drift */
+@keyframes hero-float {
+  from { transform: translate3d(0, 0, 0) rotate(0deg); }
+  to   { transform: translate3d(0, -18px, 0) rotate(2deg); }
+}
+
+/* ---------- KEYFRAMES ---------- */
+@keyframes hero-zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+@keyframes scroll-dot { 0% { opacity: 0; transform: translate(-50%, 0); } 40% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, 14px); } }
+@keyframes bar-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes breathe { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.18); } }
+@keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes iris-glow { 0% { filter: drop-shadow(0 0 0 transparent); } 50% { filter: drop-shadow(0 0 12px var(--glow)); } 100% { filter: drop-shadow(0 0 0 transparent); } }
+@keyframes pupil-pulse { 0% { transform: scale(1); } 40% { transform: scale(1.7); } 100% { transform: scale(1); } }
+@keyframes page-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal, .reveal-left, .reveal-right { opacity: 1; transform: none; filter: none; }
+}

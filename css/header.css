@@ -1,0 +1,197 @@
+/* ============================================================
+   EYESON — HEADER.CSS
+   Sticky transparent header, mega menu, centered logo,
+   right icon rail with the eye theme toggle & Eye Vault icon.
+   ============================================================ */
+
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: transparent;
+  transition: background var(--speed) var(--ease), box-shadow var(--speed), backdrop-filter var(--speed);
+}
+/* Scrolled state — solid + blurred + compact */
+.site-header.scrolled {
+  background: var(--header-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--line);
+}
+.site-header.scrolled .header-inner { height: 64px; }
+
+.header-inner {
+  height: 84px;
+  display: grid;
+  /* Three real sections — nav / logo / icons. Equal outer tracks keep the
+     logo mathematically centered; minmax(0,·) stops content from stretching
+     the tracks. No absolute positioning, no overlap, ever. */
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  transition: height var(--speed) var(--ease);
+  width: min(1400px, 94%);
+  margin: 0 auto;
+}
+
+/* ---------- LEFT NAVIGATION ---------- */
+.nav-left {
+  display: flex; gap: 22px; justify-content: flex-start;
+  min-width: 0; overflow-x: auto; scrollbar-width: none;
+}
+.nav-left::-webkit-scrollbar { display: none; }
+.nav-link {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--header-text); position: relative; padding: 8px 0;
+  transition: color var(--speed);
+}
+.nav-link::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0;
+  background: var(--accent); transition: width var(--speed) var(--ease);
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link.active { color: var(--accent); }
+
+/* ---------- CENTER LOGO ---------- */
+/* Lives in the middle grid track: perfectly centered at every width, and
+   structurally unable to push the icons or be pushed by the nav. */
+.logo-link {
+  justify-self: center;
+  display: flex; align-items: center;
+}
+/* Size the wide emblem by WIDTH (height follows automatically, aspect-safe).
+   --lgw shrinks smoothly when the header compacts on scroll. */
+.logo-link { --lgw: 150px; }
+.logo-link .lg-black, .logo-link .lg-white { width: var(--lgw); height: auto; }
+.site-header.scrolled .logo-link { --lgw: 118px; }
+.logo-link { transition: none; }
+.logo-link .lg-black, .logo-link .lg-white { transition: width 0.35s var(--ease), opacity 0.35s ease; }
+
+/* ---------- DUAL LOGO (CSS crossfade, no file swapping) ----------
+   Light theme shows the black artwork, dark theme the white one.
+   Both layers stack; only opacity animates (0.35s, GPU-friendly). */
+.logo-dual { position: relative; display: inline-flex; align-items: center; }
+.logo-dual img { height: 100%; width: auto; transition: opacity 0.35s ease; }
+.logo-dual .lg-black { opacity: 1; }
+.logo-dual .lg-white { position: absolute; inset: 0; opacity: 0; }
+[data-theme="dark"] .logo-dual .lg-black { opacity: 0; }
+[data-theme="dark"] .logo-dual .lg-white { opacity: 1; }
+
+/* Text fallback shown only until the logo files exist */
+.logo-fallback {
+  font-family: var(--font-display); font-weight: 800; font-size: 1.35rem;
+  letter-spacing: 0.42em; color: var(--header-text); padding-left: 0.42em;
+}
+
+/* ---------- RIGHT ICON RAIL ---------- */
+/* Owns the right grid track and hugs its right edge — consistent spacing,
+   never drifting toward the center. */
+.header-icons {
+  grid-column: 3;
+  display: flex; gap: 20px; justify-content: flex-end; align-items: center;
+  margin-left: auto;
+}
+.icon-btn {
+  position: relative; width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--header-text); transition: color var(--speed), transform var(--speed);
+}
+.icon-btn:hover { color: var(--accent); transform: translateY(-2px); }
+.icon-btn svg { width: 21px; height: 21px; }
+
+/* --- EYE THEME TOGGLE (signature interaction) --- */
+.eye-toggle { position: relative; width: 44px; height: 26px; }
+.eye-toggle svg { width: 44px; height: 26px; overflow: visible; }
+.eye-toggle .eyelid {
+  transform-origin: center; transform: scaleY(0);
+  transition: transform 0.7s var(--ease);
+}
+.eye-toggle.closed .eyelid { transform: scaleY(1); }
+.eye-toggle .pupil { transition: transform 0.25s ease; }
+.eye-toggle.opening .iris { animation: iris-glow 0.8s var(--ease); }
+
+/* --- EYE VAULT CART ICON --- */
+.vault-btn .iris-count {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 9px; font-weight: 800; pointer-events: none;
+}
+.vault-btn .pupil { transition: transform 0.3s var(--ease); transform-origin: center; }
+.vault-btn.pulse .pupil { animation: pupil-pulse 0.5s var(--ease); }
+
+/* --- WISHLIST COUNT BADGE --- */
+.wish-btn { position: relative; }
+.wish-count {
+  position: absolute; top: 2px; right: 0;
+  min-width: 16px; height: 16px; padding: 0 4px;
+  border-radius: 50%; background: var(--accent); color: #000;
+  font-size: 8px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+
+/* ---------- SEARCH OVERLAY ---------- */
+.search-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: var(--bg); display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 18vh; opacity: 0; pointer-events: none;
+  transition: opacity var(--speed) var(--ease);
+}
+.search-overlay.open { opacity: 1; pointer-events: auto; }
+.search-box { width: min(680px, 88%); }
+.search-box input {
+  width: 100%; background: none; border: none; border-bottom: 2px solid var(--text);
+  font-family: var(--font-display); font-size: clamp(1.4rem, 4vw, 2.4rem);
+  font-weight: 700; padding: 14px 0; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.search-box input:focus { outline: none; border-color: var(--accent); }
+.search-hint { margin-top: 14px; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-soft); }
+.search-results { margin-top: 34px; display: grid; gap: 6px; max-height: 44vh; overflow-y: auto; }
+.search-result {
+  display: flex; align-items: center; gap: 16px; padding: 12px 14px;
+  border: 1px solid var(--line); background: var(--card); transition: border-color var(--speed);
+}
+.search-result:hover { border-color: var(--accent); }
+.search-result .sr-img { width: 52px; height: 62px; flex: none; }
+.search-result .sr-name { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.search-result .sr-price { color: var(--accent); font-weight: 700; }
+.search-close { position: absolute; top: 28px; right: 36px; font-size: 1.6rem; color: var(--text-soft); }
+.search-close:hover { color: var(--accent); }
+
+/* ---------- MOBILE MENU ---------- */
+.menu-toggle { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.menu-toggle span {
+  display: block; width: 22px; height: 3px; border-radius: 3px;
+  background: var(--header-text); transition: all var(--speed);
+}
+.menu-toggle:hover span:nth-child(2) { width: 14px; } /* playful dot stagger */
+.mobile-nav {
+  position: fixed; inset: 0; z-index: 1500; background: var(--bg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  opacity: 0; pointer-events: none; transition: opacity var(--speed);
+}
+.mobile-nav.open { opacity: 1; pointer-events: auto; }
+.mobile-nav a {
+  font-family: var(--font-display); font-size: 1.25rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em; padding: 7px;
+  opacity: 0; transform: translateY(14px);
+  animation: mob-link 0.45s var(--ease) forwards;
+}
+.mobile-nav a:nth-child(2) { animation-delay: 0.03s } .mobile-nav a:nth-child(3) { animation-delay: 0.06s }
+.mobile-nav a:nth-child(4) { animation-delay: 0.09s } .mobile-nav a:nth-child(5) { animation-delay: 0.12s }
+.mobile-nav a:nth-child(6) { animation-delay: 0.15s } .mobile-nav a:nth-child(7) { animation-delay: 0.18s }
+.mobile-nav a:nth-child(8) { animation-delay: 0.21s } .mobile-nav a:nth-child(9) { animation-delay: 0.24s }
+.mobile-nav a:nth-child(10) { animation-delay: 0.27s } .mobile-nav a:nth-child(11) { animation-delay: 0.3s }
+.mobile-nav a:nth-child(12) { animation-delay: 0.33s } .mobile-nav a:nth-child(13) { animation-delay: 0.36s }
+@keyframes mob-link { to { opacity: 1; transform: translateY(0); } }
+.mobile-nav a:hover { color: var(--accent); }
+.mobile-nav .mobile-close { position: absolute; top: 26px; right: 32px; font-size: 1.5rem; }
+
+/* ---------- MEGA MENU ---------- */
+.nav-item { position: relative; }
+.mega-menu {
+  position: absolute; top: 100%; left: 50%; transform: translate(-50%, 12px);
+  background: var(--card); box-shadow: var(--shadow);
+  padding: 34px 44px; display: grid; grid-template-columns: repeat(3, minmax(150px, 1fr)); gap: 30px;
+  opacity: 0; pointer-events: none; transition: all var(--speed) var(--ease);
+}
+.nav-item:hover .mega-menu { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+.mega-menu h4 { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 14px; }
+.mega-menu a { display: block; font-size: 0.72rem; padding: 4px 0; color: var(--text); transition: color var(--speed), transform var(--speed); }
+.mega-menu a:hover { color: var(--accent); transform: translateX(4px); }
